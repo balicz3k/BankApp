@@ -1,0 +1,3 @@
+/Users/balicz3k/Documents/BankApp/cmake-build-debug/CMakeFiles/BankApp.dir
+/Users/balicz3k/Documents/BankApp/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/balicz3k/Documents/BankApp/cmake-build-debug/CMakeFiles/rebuild_cache.dir
