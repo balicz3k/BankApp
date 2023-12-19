@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(BankApp
+        main.cpp
         Date.cpp
         Date.h
-        main.cpp)
+        Person.cpp
+        Person.h)

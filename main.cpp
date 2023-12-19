@@ -1,7 +1,7 @@
-#include "Date.h"
+#include "Person.h"
 
 int main(){
-    Date D;
+    Person D;
     cin>>D;
     cout<<D;
 }
