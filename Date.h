@@ -8,6 +8,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include "fstream"
 
 using namespace std;
 
@@ -22,12 +23,14 @@ class Date {
     int day;
 public:
     Date(string date="01-01-2000");
-    bool FromString(string date);
+    bool convert_from_string(string date);
     bool set_year(int y);
     bool set_month(int m);
     bool set_day(int d);
     friend istream &operator>>(istream &os, Date &a);
     friend ostream &operator<<(ostream &os,const Date &a);
+    bool save_data();
+    bool load_data();
 };
 
 

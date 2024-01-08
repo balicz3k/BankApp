@@ -10,4 +10,10 @@ add_executable(BankApp
         Date.cpp
         Date.h
         Person.cpp
-        Person.h)
+        Person.h
+        Password.cpp
+        Password.h
+        User.cpp
+        User.h
+        Database.cpp
+        Database.h)
