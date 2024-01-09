@@ -41,7 +41,18 @@ bool User::save_data(ofstream &data_file){
         cerr<<"Database error!\n";
         return false;
     }
-    data_file.write((char*)(this), sizeof(User));
+    size_t loginSize=Login.size();
+    data_file.write((char*)(&loginSize),sizeof(loginSize));
+    data_file.write(Login.data(),loginSize);
+
+    PassWord.save_data(data_file);
+
+    size_t account_numberSize=Account_number.size();
+    data_file.write((char*)(&account_numberSize),sizeof(account_numberSize));
+    data_file.write(Account_number.data(),account_numberSize);
+
+    Person::save_data(data_file);
+
     return true;
 }
 
@@ -50,7 +61,20 @@ bool User::load_data(ifstream &data_file){
         cerr<<"Database connection error!\n";
         return false;
     }
-    data_file.read((char*)(this), sizeof(User));
+    size_t loginSize;
+    data_file.read((char*)(&loginSize),sizeof(loginSize));
+    Login.resize(loginSize);
+    data_file.read(&Login[0],loginSize);
+
+    PassWord.load_data(data_file);
+
+    size_t account_numberSize;
+    data_file.read((char*)(&account_numberSize),sizeof(account_numberSize));
+    Account_number.resize(account_numberSize);
+    data_file.read(&Account_number[0],account_numberSize);
+
+    Person::load_data(data_file);
+
     return true;
 }
 

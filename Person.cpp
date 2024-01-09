@@ -172,21 +172,75 @@ istream &operator>>(istream &os, Person &P) {
     return os;
 }
 
-bool Person::save_data(){
-    ofstream data_file("/Users/balicz3k/Documents/BankApp/Database",ios::binary);
+bool Person::save_data(ofstream &data_file){
     if(!data_file.is_open()){
         return false;
     }
-    data_file.write((char*)(this),sizeof(Person));
-    data_file.close();
+
+    size_t size=Name.size();
+    data_file.write((char*)(&size),sizeof(size));
+    data_file.write(Name.data(),Name.size());
+
+    size=Surname.size();
+    data_file.write((char*)(&size),sizeof(size));
+    data_file.write(Surname.data(),Surname.size());
+
+    Birth_date.save_data(data_file);
+
+    size=Pesel.size();
+    data_file.write((char*)(&size),sizeof(size));
+    data_file.write(Pesel.data(),Pesel.size());
+
+    size=Address.size();
+    data_file.write((char*)(&size),sizeof(size));
+    data_file.write(Address.data(),Address.size());
+
+    size=Mail.size();
+    data_file.write((char*)(&size),sizeof(size));
+    data_file.write(Mail.data(),Mail.size());
+
+    size=Phone_number.size();
+    data_file.write((char*)(&size),sizeof(size));
+    data_file.write(Phone_number.data(),Phone_number.size());
+
     return true;
 }
-bool Person::load_data() {
-    ifstream data_file("/Users/balicz3k/Documents/BankApp/Database",ios::binary);
+bool Person::load_data(ifstream &data_file) {
     if(!data_file.is_open()){
         return false;
     }
-    data_file.read((char*)(this),sizeof(Person));
-    data_file.close();
+
+    size_t nameSize;
+    data_file.read((char*)(&nameSize), sizeof(nameSize));
+    Name.resize(nameSize);
+    data_file.read(&Name[0], nameSize);
+
+    size_t surnameSize;
+    data_file.read((char*)(&surnameSize), sizeof(surnameSize));
+    Surname.resize(surnameSize);
+    data_file.read(&Surname[0], surnameSize);
+
+    Birth_date.load_data(data_file);
+
+    size_t peselSize;
+    data_file.read((char*)(&peselSize), sizeof(peselSize));
+    Pesel.resize(peselSize);
+    data_file.read(&Pesel[0], peselSize);
+
+    size_t addressSize;
+    data_file.read((char*)(&addressSize), sizeof(addressSize));
+    Address.resize(addressSize);
+    data_file.read(&Address[0], addressSize);
+
+    size_t mailSize;
+    data_file.read((char*)(&mailSize), sizeof(mailSize));
+    Mail.resize(mailSize);
+    data_file.read(&Mail[0], mailSize);
+
+    size_t phoneNumberSize;
+    data_file.read((char*)(&phoneNumberSize), sizeof(phoneNumberSize));
+    Phone_number.resize(phoneNumberSize);
+    data_file.read(&Phone_number[0], phoneNumberSize);
+
     return true;
 }

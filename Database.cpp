@@ -5,7 +5,7 @@
 #include "Database.h"
 
 Database::Database() {
-    this->load_data();
+    //this->load_data();
 }
 
 void Database::add_new_record(const User &U) {
@@ -29,8 +29,9 @@ void Database::remove_existing_record(const User &U) {
 
 Database::~Database() {
 }
+
 bool Database::load_data() {
-    ifstream data_file("/Users/balicz3k/Documents/BankApp/Database",ios::binary);
+    ifstream data_file("/Users/balicz3k/Documents/BankApp/Users",ios::binary);
     if(!data_file.is_open()){
         cerr<<"Database connection error!\n";
         return false;
@@ -40,7 +41,6 @@ bool Database::load_data() {
     User tmp;
     for(size_t i = 0; i<size ; i++){
         tmp.load_data(data_file);
-        cout<<tmp;
         Data.push_back(tmp);
     }
     data_file.close();
@@ -48,7 +48,7 @@ bool Database::load_data() {
 }
 
 bool Database::save_data() {
-    ofstream data_file("/Users/balicz3k/Documents/BankApp/Database",ios::binary);
+    ofstream data_file("/Users/balicz3k/Documents/BankApp/Users",ios::binary);
     if(!data_file.is_open()){
         cerr<<"Database connection error!\n";
         return false;
@@ -56,9 +56,17 @@ bool Database::save_data() {
     size_t size=Data.size();
     data_file.write((char*)(&size),sizeof(size));
     for(size_t i = 0; i<size ; i++){
-        cout<<Data[i];
         Data[i].save_data(data_file);
     }
     data_file.close();
     return true;
+}
+
+ostream &operator<<(ostream &os, Database &D) {
+    for(int i=0;i<D.Data.size();i++) {
+        os<<"====================\n";
+        os << D.Data[i];
+        os<<"\n====================\n";
+    }
+    return os;
 }

@@ -82,6 +82,18 @@ bool Date::convert_from_string(string date){
     return true;
 }
 
+string Date::convert_to_string(){
+    string tmp="";
+    tmp+=(day<10 ? "0" : "");
+    tmp+= to_string(day);
+    tmp+='-';
+    tmp+=(month<10 ? "0" : "");
+    tmp+= to_string(month);
+    tmp+='-';
+    tmp+=to_string(year);
+    return tmp;
+}
+
 istream &operator>>(istream &os, Date &a) {
     cout<<"Enter your birth date [dd-mm-yyyy]: ";
     string str;
@@ -106,21 +118,29 @@ void update_current_date() {
     current_day=localTime->tm_mday;
 }
 
-bool Date::save_data(){
-    ofstream data_file("/Users/balicz3k/Documents/BankApp/Database",ios::binary);
+bool Date::save_data(ofstream &data_file){
     if(!data_file.is_open()){
         return false;
     }
-    data_file.write((char*)(this),sizeof(Date));
-    data_file.close();
+    string tmp=this->convert_to_string();
+    size_t size=tmp.size();
+    data_file.write((char*)(&size),sizeof(size));
+    data_file.write(tmp.data(),size);
+
     return true;
 }
 
-bool Date::load_data(){
-    ifstream data_file("/Users/balicz3k/Documents/BankApp/Database",ios::binary);
+bool Date::load_data(ifstream &data_file){
     if(!data_file.is_open()){
         return false;
     }
-    data_file.read((char*)(this),sizeof(Date));
+    size_t dataSize;
+    string tmp;
+    data_file.read((char*)(&dataSize),sizeof(dataSize));
+    tmp.resize(dataSize);
+    data_file.read((char*)&tmp[0],dataSize);
+
+    this->convert_from_string(tmp);
+
     return true;
 }

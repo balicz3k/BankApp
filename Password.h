@@ -9,6 +9,7 @@
 #include <iostream>
 #include <regex>
 #include <functional>
+#include <fstream>
 
 using namespace std;
 
@@ -20,6 +21,8 @@ public:
     void set_Password_hash(const string &password);
     size_t get_Password_hash();
     friend istream &operator>>(istream &os,Password &P);
+    bool save_data(ofstream &data_file);
+    bool load_data(ifstream &data_file);
 };
 
 

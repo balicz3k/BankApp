@@ -24,13 +24,14 @@ class Date {
 public:
     Date(string date="01-01-2000");
     bool convert_from_string(string date);
+    string convert_to_string();
     bool set_year(int y);
     bool set_month(int m);
     bool set_day(int d);
     friend istream &operator>>(istream &os, Date &a);
     friend ostream &operator<<(ostream &os,const Date &a);
-    bool save_data();
-    bool load_data();
+    bool save_data(ofstream &data_file);
+    bool load_data(ifstream &data_file);
 };
 
 

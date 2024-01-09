@@ -35,3 +35,19 @@ istream &operator>>(istream &os,Password &P){
         getline(os,tmp);
     return os;
 }
+
+bool Password::save_data(ofstream &data_file){
+    if(!data_file.is_open()){
+        return false;
+    }
+    data_file.write((char*)(&Password_hash),sizeof(Password_hash));
+    return true;
+}
+
+bool Password::load_data(ifstream &data_file){
+    if(!data_file.is_open()){
+        return false;
+    }
+    data_file.read((char*)(&Password_hash),sizeof(Password_hash));
+    return true;
+}

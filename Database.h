@@ -20,6 +20,7 @@ public:
     bool check_account_number_exist(const string &number);
     void remove_existing_record(const User &U);
     ~Database();
+    friend ostream& operator<<(ostream &os, Database &D);
 };
 
 
