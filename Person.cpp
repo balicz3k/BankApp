@@ -19,14 +19,14 @@ bool Person::set_Name(string &a) {
         cerr << "Wrong name!\n";
         return false;
     }
-    a[0]=toupper(a[0]);
+    a[0]=(char)toupper(a[0]);
     for(int i=1;i<a.size();i++) {
         if(a[i] == ' ' || a[i] == '-'){
             ++i;
-            a[i]=toupper(a[i]);
+            a[i]=(char)toupper(a[i]);
             continue;
         }
-        a[i]=tolower(a[i]);
+        a[i]=(char)tolower(a[i]);
     }
     Name=a;
     return true;
@@ -42,14 +42,14 @@ bool Person::set_Surname(string &a) {
         cerr << "Wrong surname!\n";
         return false;
     }
-    a[0]=toupper(a[0]);
+    a[0]=(char)toupper(a[0]);
     for(int i=1;i<a.size();i++) {
         if(a[i] == ' ' || a[i] == '-'){
             ++i;
-            a[i]=toupper(a[i]);
+            a[i]=(char)toupper(a[i]);
             continue;
         }
-        a[i]=tolower(a[i]);
+        a[i]=(char)tolower(a[i]);
     }
     Surname=a;
     return true;
@@ -172,75 +172,75 @@ istream &operator>>(istream &os, Person &P) {
     return os;
 }
 
-bool Person::save_data(ofstream &data_file){
-    if(!data_file.is_open()){
+bool Person::save_data(ofstream &File){
+    if(!File.is_open()){
         return false;
     }
 
-    size_t size=Name.size();
-    data_file.write((char*)(&size),sizeof(size));
-    data_file.write(Name.data(),Name.size());
+    auto Name_size=(streamsize)Name.size();
+    File.write((char*)(&Name_size), sizeof(Name_size));
+    File.write(Name.data(), Name_size);
 
-    size=Surname.size();
-    data_file.write((char*)(&size),sizeof(size));
-    data_file.write(Surname.data(),Surname.size());
+    auto Surname_size=(streamsize)Surname.size();
+    File.write((char*)(&Surname_size), sizeof(Surname_size));
+    File.write(Surname.data(), Surname_size);
 
-    Birth_date.save_data(data_file);
+    Birth_date.save_data(File);
 
-    size=Pesel.size();
-    data_file.write((char*)(&size),sizeof(size));
-    data_file.write(Pesel.data(),Pesel.size());
+    auto Pesel_size=(streamsize)Pesel.size();
+    File.write((char*)(&Pesel_size), sizeof(Pesel_size));
+    File.write(Pesel.data(), Pesel_size);
 
-    size=Address.size();
-    data_file.write((char*)(&size),sizeof(size));
-    data_file.write(Address.data(),Address.size());
+    auto Address_size=(streamsize)Address.size();
+    File.write((char*)(&Address_size), sizeof(Address_size));
+    File.write(Address.data(), Address_size);
 
-    size=Mail.size();
-    data_file.write((char*)(&size),sizeof(size));
-    data_file.write(Mail.data(),Mail.size());
+    auto Mail_size=(streamsize)Mail.size();
+    File.write((char*)(&Mail_size), sizeof(Mail_size));
+    File.write(Mail.data(), Mail_size);
 
-    size=Phone_number.size();
-    data_file.write((char*)(&size),sizeof(size));
-    data_file.write(Phone_number.data(),Phone_number.size());
+    auto Phone_number_size=(streamsize)Phone_number.size();
+    File.write((char*)(&Phone_number_size), sizeof(Phone_number_size));
+    File.write(Phone_number.data(), Phone_number_size);
 
     return true;
 }
-bool Person::load_data(ifstream &data_file) {
-    if(!data_file.is_open()){
+bool Person::load_data(ifstream &File) {
+    if(!File.is_open()){
         return false;
     }
 
-    size_t nameSize;
-    data_file.read((char*)(&nameSize), sizeof(nameSize));
-    Name.resize(nameSize);
-    data_file.read(&Name[0], nameSize);
+    streamsize Name_size;
+    File.read((char*)(&Name_size), sizeof(Name_size));
+    Name.resize(Name_size);
+    File.read(&Name[0], Name_size);
 
-    size_t surnameSize;
-    data_file.read((char*)(&surnameSize), sizeof(surnameSize));
-    Surname.resize(surnameSize);
-    data_file.read(&Surname[0], surnameSize);
+    streamsize Surname_size;
+    File.read((char*)(&Surname_size), sizeof(Surname_size));
+    Surname.resize(Surname_size);
+    File.read(&Surname[0], Surname_size);
 
-    Birth_date.load_data(data_file);
+    Birth_date.load_data(File);
 
-    size_t peselSize;
-    data_file.read((char*)(&peselSize), sizeof(peselSize));
-    Pesel.resize(peselSize);
-    data_file.read(&Pesel[0], peselSize);
+    streamsize Pesel_size;
+    File.read((char*)(&Pesel_size), sizeof(Pesel_size));
+    Pesel.resize(Pesel_size);
+    File.read(&Pesel[0], Pesel_size);
 
-    size_t addressSize;
-    data_file.read((char*)(&addressSize), sizeof(addressSize));
-    Address.resize(addressSize);
-    data_file.read(&Address[0], addressSize);
+    streamsize Address_size;
+    File.read((char*)(&Address_size), sizeof(Address_size));
+    Address.resize(Address_size);
+    File.read(&Address[0], Address_size);
 
-    size_t mailSize;
-    data_file.read((char*)(&mailSize), sizeof(mailSize));
-    Mail.resize(mailSize);
-    data_file.read(&Mail[0], mailSize);
+    streamsize Mail_size;
+    File.read((char*)(&Mail_size), sizeof(Mail_size));
+    Mail.resize(Mail_size);
+    File.read(&Mail[0], Mail_size);
 
-    size_t phoneNumberSize;
-    data_file.read((char*)(&phoneNumberSize), sizeof(phoneNumberSize));
-    Phone_number.resize(phoneNumberSize);
-    data_file.read(&Phone_number[0], phoneNumberSize);
+    streamsize Phone_number_size;
+    File.read((char*)(&Phone_number_size), sizeof(Phone_number_size));
+    Phone_number.resize(Phone_number_size);
+    File.read(&Phone_number[0], Phone_number_size);
 
     return true;
 }

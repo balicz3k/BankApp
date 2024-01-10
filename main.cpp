@@ -17,7 +17,8 @@ void wyczyscPlikBinarny(const std::string& nazwaPliku) {
 
 int main(){
     //wyczyscPlikBinarny("/Users/balicz3k/Documents/BankApp/Users");
-    Database D;
+    Database D("/Users/balicz3k/Documents/BankApp/Users");
     D.load_data();
+    cout<<D;
     cout<<D;
 }
