@@ -131,8 +131,8 @@ void User::show_user_cart() {
           "|) $ (             ACCOUNT NUMBER:           ) $ (|\n"
           "| \\ /         "<<this->Account_number<<"      \\ / |\n"
           "|  V                                           V  |\n"
-          <<"\tLOGIN: "<<this->get_Login()<<'\n'
-          <<"\tBALANCE: "<<this->get_Balance()<<'\n'<<
+          <<"\t\tLOGIN: "<<this->get_Login()<<'\n'
+          <<"\t\tBALANCE: "<<this->get_Balance()<<'\n'<<
           "| / \\                                         / \\ |\n"
           "|( $ )                                       ( $ )|\n"
           "| \\ /  —-——-==========<QBANK>==========-—-——  \\ / |\n"

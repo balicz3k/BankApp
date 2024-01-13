@@ -20,9 +20,12 @@ void wyczyscPlikBinarny(const std::string& nazwaPliku) {
 int main(){
     MainInterface M;
     while(!M.get_Exit()){
+        M.clear_screen();
         M.start_animation();
         M.show_menu();
         M.read_input();
         M.execute();
+        cin.ignore();
+        M.wait_for_click_button();
     }
 }

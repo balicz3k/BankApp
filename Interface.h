@@ -6,6 +6,18 @@
 #define BANKAPP_INTERFACE_H
 #include <iostream>
 #include "InvalidChoiceException.h"
+
+#ifdef _WIN32
+#include <windows.h>
+#define CLEAR system("cls")
+#define WAIT system("pause")
+#elif __linux__ || __APPLE__
+#include <cstdlib>
+#define CLEAR system("clear")
+#define WAIT cout<<"ENTER ENTER TO CONTINUE!\n"; cin.get()
+#endif
+
+
 using namespace std;
 
 class Interface {
@@ -22,6 +34,8 @@ public:
     template <typename Type>
     bool correct_input(const Type &input);
     bool get_Exit();
+    void clear_screen();
+    void wait_for_click_button();
 
     void end_communicat();
 };

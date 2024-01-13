@@ -40,4 +40,12 @@ void Interface::end_communicat() {
     cout<<"THANKS FOR BEING WITH US!\n";
 }
 
+void Interface::clear_screen() {
+    CLEAR;
+}
+
+void Interface::wait_for_click_button() {
+    WAIT;
+}
+
 

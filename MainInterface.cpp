@@ -27,6 +27,7 @@ void MainInterface::show_menu() {
 }
 
 void MainInterface::execute() {
+    this->clear_screen();
     string PIN;
     Password P;
     bool access=true;
@@ -40,16 +41,17 @@ void MainInterface::execute() {
             D.add_new_record(U);
             break;
         case 2:
+            L.clear_screen();
             if(!L.login()){
                 L.set_Exit_true();
             }
             while(!L.get_Exit()){
+                L.clear_screen();
                 L.show_info();
                 L.show_menu();
                 L.read_input();
                 L.execute();
             }
-            D.load_data();
             break;
         case 3:
             cout<<"ENTER PIN: ";
@@ -60,6 +62,7 @@ void MainInterface::execute() {
                 cerr<<"ACCESS DENIED!\n";
             }
             while(!A.get_Exit()&&access) {
+                A.clear_screen();
                 A.start_animation();
                 A.show_menu();
                 A.read_input();

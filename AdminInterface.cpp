@@ -35,6 +35,7 @@ void AdminInterface::execute() {
     string login;
     switch(Choice){
         case 1:
+            this->clear_screen();
             cin>>U;
             D.add_new_record(U);
             break;
@@ -47,6 +48,8 @@ void AdminInterface::execute() {
             break;
         case 3:
             cout<<D<<'\n';
+            cin.ignore();
+            this->wait_for_click_button();
             break;
         case 4:
             Interface::Exit=true;

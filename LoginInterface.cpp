@@ -31,7 +31,10 @@ void LoginInterface::execute() {
             D.add_new_record(Logged_user);
             break;
         case 3:
+            this->clear_screen();
             cout<<Logged_user<<'\n';
+            cin.ignore();
+            this->wait_for_click_button();
             break;
         case 4:
             Interface::Exit=true;
