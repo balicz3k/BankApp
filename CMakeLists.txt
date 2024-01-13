@@ -16,4 +16,12 @@ add_executable(BankApp
         User.cpp
         User.h
         Database.cpp
-        Database.h)
+        Database.h
+        Interface.cpp
+        Interface.h
+        MainInterface.h
+        MainInterface.cpp
+        AdminInterface.cpp
+        LoginInterface.h
+        LoginInterface.cpp
+)

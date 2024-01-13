@@ -91,6 +91,34 @@ build CMakeFiles/BankApp.dir/Database.cpp.o: CXX_COMPILER__BankApp_unscanned_Deb
   OBJECT_DIR = CMakeFiles/BankApp.dir
   OBJECT_FILE_DIR = CMakeFiles/BankApp.dir
 
+build CMakeFiles/BankApp.dir/Interface.cpp.o: CXX_COMPILER__BankApp_unscanned_Debug /Users/balicz3k/Documents/BankApp/Interface.cpp || cmake_object_order_depends_target_BankApp
+  DEP_FILE = CMakeFiles/BankApp.dir/Interface.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/balicz3k/Documents/BankApp/.
+  OBJECT_DIR = CMakeFiles/BankApp.dir
+  OBJECT_FILE_DIR = CMakeFiles/BankApp.dir
+
+build CMakeFiles/BankApp.dir/MainInterface.cpp.o: CXX_COMPILER__BankApp_unscanned_Debug /Users/balicz3k/Documents/BankApp/MainInterface.cpp || cmake_object_order_depends_target_BankApp
+  DEP_FILE = CMakeFiles/BankApp.dir/MainInterface.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/balicz3k/Documents/BankApp/.
+  OBJECT_DIR = CMakeFiles/BankApp.dir
+  OBJECT_FILE_DIR = CMakeFiles/BankApp.dir
+
+build CMakeFiles/BankApp.dir/AdminInterface.cpp.o: CXX_COMPILER__BankApp_unscanned_Debug /Users/balicz3k/Documents/BankApp/AdminInterface.cpp || cmake_object_order_depends_target_BankApp
+  DEP_FILE = CMakeFiles/BankApp.dir/AdminInterface.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/balicz3k/Documents/BankApp/.
+  OBJECT_DIR = CMakeFiles/BankApp.dir
+  OBJECT_FILE_DIR = CMakeFiles/BankApp.dir
+
+build CMakeFiles/BankApp.dir/LoginInterface.cpp.o: CXX_COMPILER__BankApp_unscanned_Debug /Users/balicz3k/Documents/BankApp/LoginInterface.cpp || cmake_object_order_depends_target_BankApp
+  DEP_FILE = CMakeFiles/BankApp.dir/LoginInterface.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/balicz3k/Documents/BankApp/.
+  OBJECT_DIR = CMakeFiles/BankApp.dir
+  OBJECT_FILE_DIR = CMakeFiles/BankApp.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target BankApp
@@ -99,7 +127,7 @@ build CMakeFiles/BankApp.dir/Database.cpp.o: CXX_COMPILER__BankApp_unscanned_Deb
 #############################################
 # Link the executable BankApp
 
-build BankApp: CXX_EXECUTABLE_LINKER__BankApp_Debug CMakeFiles/BankApp.dir/main.cpp.o CMakeFiles/BankApp.dir/Date.cpp.o CMakeFiles/BankApp.dir/Person.cpp.o CMakeFiles/BankApp.dir/Password.cpp.o CMakeFiles/BankApp.dir/User.cpp.o CMakeFiles/BankApp.dir/Database.cpp.o
+build BankApp: CXX_EXECUTABLE_LINKER__BankApp_Debug CMakeFiles/BankApp.dir/main.cpp.o CMakeFiles/BankApp.dir/Date.cpp.o CMakeFiles/BankApp.dir/Person.cpp.o CMakeFiles/BankApp.dir/Password.cpp.o CMakeFiles/BankApp.dir/User.cpp.o CMakeFiles/BankApp.dir/Database.cpp.o CMakeFiles/BankApp.dir/Interface.cpp.o CMakeFiles/BankApp.dir/MainInterface.cpp.o CMakeFiles/BankApp.dir/AdminInterface.cpp.o CMakeFiles/BankApp.dir/LoginInterface.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk
   OBJECT_DIR = CMakeFiles/BankApp.dir
   POST_BUILD = :

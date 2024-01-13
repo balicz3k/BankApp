@@ -1,5 +1,7 @@
 #include "User.h"
 #include "Database.h"
+#include "MainInterface.h"
+#include "Interface.h"
 
 void wyczyscPlikBinarny(const std::string& nazwaPliku) {
     // Otwórz plik w trybie std::ios::trunc, co spowoduje usunięcie istniejącej zawartości
@@ -16,9 +18,11 @@ void wyczyscPlikBinarny(const std::string& nazwaPliku) {
 }
 
 int main(){
-    //wyczyscPlikBinarny("/Users/balicz3k/Documents/BankApp/Users");
-    Database D("/Users/balicz3k/Documents/BankApp/Users");
-    D.load_data();
-    cout<<D;
-    cout<<D;
+    MainInterface M;
+    while(!M.get_Exit()){
+        M.start_animation();
+        M.show_menu();
+        M.read_input();
+        M.execute();
+    }
 }

@@ -4,17 +4,18 @@
 
 #include "Database.h"
 
-Database::Database(string File) : Source(File) {};
+Database::Database(string File) : Source(File) {
+    this->load_data();
+};
 
 void Database::add_new_record(const User &U) {
     Data.push_back(U);
     if(!save_data())
         cerr<<"Record did not add to database!\n";
-    cout<<"Record added to database!\n";
 }
 
 bool Database::check_login_exist(const string &login) {
-    for(auto i=0; Data.size() > i; i++){
+    for(auto i=0; i<Data.size(); i++){
         if(Data[i].get_Login()==login)
             return true;
     }
@@ -30,15 +31,16 @@ bool Database::check_account_number_exist(const string &number) {
 }
 
 User Database::get_user(const string &login) const{
-    auto i=-1;
-    while(Data[i++].get_Login()==login);
-    return Data[i];
+    for(int i=0;i<Data.size();i++){
+        if(Data[i].get_Login()==login)
+            return Data[i];
+    }
+    return User();
 }
 
 void Database::remove_existing_record(const User &U) {
     for(auto i=0;i<Data.size();i++){
-        if(Data[i].get_Login()==U.get_Login() &&
-        Data[i].get_Account_number()==U.get_Account_number()){
+        if(Data[i].get_Login()==U.get_Login()){
             Data.erase(Data.begin()+i);
             i--;
         }
@@ -82,9 +84,12 @@ bool Database::save_data() {
 }
 
 ostream &operator<<(ostream &os, Database &D) {
+    if(D.Data.size()==0) {
+        cout << "EMPTY USERS DATABASE!\n";
+        return os;
+    }
     for(int i=0;i<D.Data.size();i++) {
-        os<<"====================\n";
-        os << D.Data[i]<<'\n';
+        D.Data[i].show_user_cart();
     }
     return os;
 }

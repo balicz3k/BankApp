@@ -33,8 +33,10 @@ public:
     bool set_Phone_number(string &a);
     friend istream &operator>>(istream &os,Person &P);
     friend ostream &operator<<(ostream &os,const Person &P);
-    bool save_data(ofstream &data_file);
-    bool load_data(ifstream &data_file);
+
+    virtual bool save_data(ofstream &File);
+
+    virtual bool load_data(ifstream &File);
 };
 
 #endif //BANKAPP_PERSON_H

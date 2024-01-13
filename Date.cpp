@@ -8,65 +8,63 @@ int current_year;
 int current_month;
 int current_day;
 
-Date::Date(string str_date) {
-    convert_from_string(str_date);
-}
+Date::Date(int year, int month, int day) : Year(year),Month(month),Day(day){}
 
-bool Date::set_year(int y) {
+bool Date::set_Year(int y) {
     if(!(y>=current_year-200 && y<=current_year)) {
         cout<<y<<" "<<current_year<<"\n\n\n\n";
         cerr<<"Wrong year!\n";
         return false;
     }
-    year=y;
+    Year=y;
     return true;
 }
 
-bool Date::set_month(int m) {
+bool Date::set_Month(int m) {
     if(!(m>=1&&m<=12)) {
         cerr<<"Wrong month!\n";
         return false;
     }
-    if(year==current_year)
+    if(Year==current_year)
         if(m>current_month){
             cerr<<"Wrong date!\n";
             return false;
         }
-    month=m;
+    Month=m;
     return true;
 }
 
-bool Date::set_day(int d) {
+bool Date::set_Day(int d) {
     if(!(d>=1 && d<=31)){
         cerr<<"Wrong day!\n";
         return false;
     }
-    if(year==current_year && month==current_month)
+    if(Year==current_year && Month==current_month)
         if(d>current_day) {
             cerr<<"Wrong date!\n";
             return false;
         }
-    if(current_year-year<18) {
+    if(current_year-Year<18) {
         cerr<<"You are to young!\n";
         return false;
     }
-    if(current_year-year==18){
-        if(current_month-month<0) {
+    if(current_year-Year==18){
+        if(current_month-Month<0) {
                 cerr<<"You are to young!";
                 return false;
         }
-        if(current_month-month==0){
-            if(current_day-day<0){
+        if(current_month-Month==0){
+            if(current_day-Day<0){
                 cerr<<"You are to young!";
                 return false;
             }
         }
     }
-    day=d;
+    Day=d;
     return true;
 }
 
-bool Date::convert_from_string(string date){
+bool Date::convert_from_string(const string &date){
     update_current_date();
     istringstream stream(date);
     int d,m,y;
@@ -76,21 +74,21 @@ bool Date::convert_from_string(string date){
         cerr << "Incorrect date format!\n";
         return false;
     }
-    if(!set_year(y)) return false;
-    if(!set_month(m)) return false;
-    if(!set_day(d)) return false;
+    if(!set_Year(y)) return false;
+    if(!set_Month(m)) return false;
+    if(!set_Day(d)) return false;
     return true;
 }
 
-string Date::convert_to_string(){
-    string tmp="";
-    tmp+=(day<10 ? "0" : "");
-    tmp+= to_string(day);
+string Date::convert_to_string() const{
+    string tmp;
+    tmp+=(Day<10 ? "0" : "");
+    tmp+= to_string(Day);
     tmp+='-';
-    tmp+=(month<10 ? "0" : "");
-    tmp+= to_string(month);
+    tmp+=(Month<10 ? "0" : "");
+    tmp+= to_string(Month);
     tmp+='-';
-    tmp+=to_string(year);
+    tmp+=to_string(Year);
     return tmp;
 }
 
@@ -105,7 +103,7 @@ istream &operator>>(istream &os, Date &a) {
 }
 
 ostream &operator<<(ostream &os,const Date &a) {
-    os<<"Date of birth: "<<(a.day<10 ? "0" : "")<<a.day <<'-'<<(a.month<10 ? "0" : "")<<a.month<<'-'<<a.year;
+    os<<"Date of birth: "<<(a.Day<10 ? "0" : "")<<a.Day <<'-'<<(a.Month<10 ? "0" : "")<<a.Month<<'-'<<a.Year;
     return os;
 }
 
@@ -118,27 +116,27 @@ void update_current_date() {
     current_day=localTime->tm_mday;
 }
 
-bool Date::save_data(ofstream &data_file){
-    if(!data_file.is_open()){
+bool Date::save_data(ofstream &File) const{
+    if(!File.is_open()){
         return false;
     }
     string tmp=this->convert_to_string();
-    size_t size=tmp.size();
-    data_file.write((char*)(&size),sizeof(size));
-    data_file.write(tmp.data(),size);
+    auto Data_size=(streamsize)tmp.size();
+    File.write((char*)(&Data_size), sizeof(Data_size));
+    File.write(tmp.data(), Data_size);
 
     return true;
 }
 
-bool Date::load_data(ifstream &data_file){
-    if(!data_file.is_open()){
+bool Date::load_data(ifstream &File){
+    if(!File.is_open()){
         return false;
     }
-    size_t dataSize;
+    streamsize Data_size;
     string tmp;
-    data_file.read((char*)(&dataSize),sizeof(dataSize));
-    tmp.resize(dataSize);
-    data_file.read((char*)&tmp[0],dataSize);
+    File.read((char*)(&Data_size),sizeof(Data_size));
+    tmp.resize(Data_size);
+    File.read((char*)&tmp[0],Data_size);
 
     this->convert_from_string(tmp);
 

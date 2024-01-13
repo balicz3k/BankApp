@@ -12,16 +12,22 @@ class User : public Person{
     string Login;
     Password PassWord;
     string Account_number;
-    int Balance;
+    double Balance;
 public:
-    User(string login="test",int balance=0);
+    User(const string login="test",int balance=0);
     bool set_Login(const string &login);
     void generate_Account_number();
-    string get_Login();
-    string get_Account_number();
+    string get_Login() const;
+    string get_Account_number() const;
+    int get_Balance() const;
+    void show_user_cart();
     friend istream& operator>>(istream &os, User &U);
-    bool save_data(ofstream &data_file);
-    bool load_data(ifstream &data_file);
+    bool is_enough_money(const double &amount_of_money);
+    void deposit();
+    bool withdrawal();
+    bool compare_password(const string &password);
+    bool save_data(ofstream &File) override;
+    bool load_data(ifstream &File) override;
 };
 
 

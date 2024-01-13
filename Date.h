@@ -18,20 +18,20 @@ extern int current_day;
 void update_current_date();
 
 class Date {
-    int year;
-    int month;
-    int day;
+    int Year;
+    int Month;
+    int Day;
 public:
-    Date(string date="01-01-2000");
-    bool convert_from_string(string date);
-    string convert_to_string();
-    bool set_year(int y);
-    bool set_month(int m);
-    bool set_day(int d);
+    explicit Date(int year=1,int month=1, int day=1990);
+    bool convert_from_string(const string &date);
+    string convert_to_string() const;
+    bool set_Year(int y);
+    bool set_Month(int m);
+    bool set_Day(int d);
     friend istream &operator>>(istream &os, Date &a);
     friend ostream &operator<<(ostream &os,const Date &a);
-    bool save_data(ofstream &data_file);
-    bool load_data(ifstream &data_file);
+    bool save_data(ofstream &File) const;
+    bool load_data(ifstream &File);
 };
 
 
