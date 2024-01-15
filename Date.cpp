@@ -4,15 +4,11 @@
 
 #include "Date.h"
 
-int current_year;
-int current_month;
-int current_day;
-
 Date::Date(int year, int month, int day) : Year(year),Month(month),Day(day){}
 
 bool Date::set_Year(int y) {
-    if(!(y>=current_year-200 && y<=current_year)) {
-        cout<<y<<" "<<current_year<<"\n\n\n\n";
+    if(!(y>=current_Year-200 && y<=current_Year)) {
+        cout<<y<<" "<<current_Year<<"\n\n\n\n";
         cerr<<"Wrong year!\n";
         return false;
     }
@@ -25,8 +21,8 @@ bool Date::set_Month(int m) {
         cerr<<"Wrong month!\n";
         return false;
     }
-    if(Year==current_year)
-        if(m>current_month){
+    if(Year==current_Year)
+        if(m>current_Month){
             cerr<<"Wrong date!\n";
             return false;
         }
@@ -39,22 +35,22 @@ bool Date::set_Day(int d) {
         cerr<<"Wrong day!\n";
         return false;
     }
-    if(Year==current_year && Month==current_month)
-        if(d>current_day) {
+    if(Year==current_Year && Month==current_Month)
+        if(d>current_Day) {
             cerr<<"Wrong date!\n";
             return false;
         }
-    if(current_year-Year<18) {
+    if(current_Year-Year<18) {
         cerr<<"You are to young!\n";
         return false;
     }
-    if(current_year-Year==18){
-        if(current_month-Month<0) {
+    if(current_Year-Year==18){
+        if(current_Month-Month<0) {
                 cerr<<"You are to young!";
                 return false;
         }
-        if(current_month-Month==0){
-            if(current_day-Day<0){
+        if(current_Month-Month==0){
+            if(current_Day-Day<0){
                 cerr<<"You are to young!";
                 return false;
             }
@@ -107,13 +103,15 @@ ostream &operator<<(ostream &os,const Date &a) {
     return os;
 }
 
-void update_current_date() {
+void Date::update_current_date() {
     auto now = chrono::system_clock::now();
     time_t currentTime = chrono::system_clock::to_time_t(now);
-    tm* localTime = localtime(&currentTime);
-    current_year=1900+localTime->tm_year;
-    current_month=localTime->tm_mon+1;
-    current_day=localTime->tm_mday;
+
+    localTime_declaration;
+
+    set_current_Day;
+    set_current_Month;
+    set_current_Year;
 }
 
 bool Date::save_data(ofstream &File) const{

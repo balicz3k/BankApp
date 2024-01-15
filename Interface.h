@@ -14,7 +14,7 @@
 #elif __linux__ || __APPLE__
 #include <cstdlib>
 #define CLEAR system("clear")
-#define WAIT cout<<"ENTER ENTER TO CONTINUE!\n"; cin.get()
+#define WAIT cout<<"PRESS ENTER TO CONTINUE!\n"; cin.get()
 #endif
 
 

@@ -38,6 +38,7 @@ void AdminInterface::execute() {
             this->clear_screen();
             cin>>U;
             D.add_new_record(U);
+            this->wait_for_click_button();
             break;
         case 2:
             cout<<"ENTER USERS TO REMOVE LOGIN: ";
@@ -45,6 +46,7 @@ void AdminInterface::execute() {
             getline(cin,login);
             U=D.get_user(login);
             D.remove_existing_record(U);
+            this->wait_for_click_button();
             break;
         case 3:
             cout<<D<<'\n';

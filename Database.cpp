@@ -9,6 +9,10 @@ Database::Database(string File) : Source(File) {
 };
 
 void Database::add_new_record(const User &U) {
+    if(this->check_login_exist(U.get_Login())) {
+        cerr << "USER WITH THAT LOGIN ALREADY EXIST!\n";
+        return;
+    }
     Data.push_back(U);
     if(!save_data())
         cerr<<"Record did not add to database!\n";
@@ -42,10 +46,12 @@ void Database::remove_existing_record(const User &U) {
     for(auto i=0;i<Data.size();i++){
         if(Data[i].get_Login()==U.get_Login()){
             Data.erase(Data.begin()+i);
-            i--;
+            cout<<"USER: "<<U.get_Login()<<" was removed!\n";
+            this->save_data();
+            return;
         }
     }
-    this->save_data();
+    cerr<<"THAT USER DOES NOT EXIST!\n";
 }
 
 Database::~Database() {
